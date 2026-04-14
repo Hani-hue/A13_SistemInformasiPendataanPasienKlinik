@@ -17,6 +17,17 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             InitializeComponent();
         }
 
-        
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnPasien_Click(object sender, EventArgs e)
+        {
+            // Pastikan nama FormDashboardAdmin sudah sesuai dengan file CRUD kamu
+            FormDashboardAdmin formKelola = new FormDashboardAdmin();
+            formKelola.Show();
+            this.Hide(); // Sembunyikan menu utama
+        }
+
     }
 }
