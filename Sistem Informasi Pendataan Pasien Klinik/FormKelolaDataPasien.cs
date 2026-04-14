@@ -171,6 +171,19 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             this.Close();
         }
 
+        private void ClearForm()
+        {
+            txtIDPasien.Clear();
+            txtNama.Clear();
+            txtAlamat.Clear();
+            txtTelp.Clear();
+            cbJnsKelamin.SelectedIndex = -1;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
 
