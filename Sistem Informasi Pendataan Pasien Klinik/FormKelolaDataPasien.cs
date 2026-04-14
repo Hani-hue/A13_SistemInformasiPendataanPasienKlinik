@@ -49,5 +49,38 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             }
         }
 
+        private void btnSimpan_Click(object sender, EventArgs e)
+        {
+            // BAGIAN F: Validasi Input agar tidak kosong
+            if (string.IsNullOrWhiteSpace(txtNama.Text) || string.IsNullOrWhiteSpace(txtAlamat.Text))
+            {
+                MessageBox.Show("Nama dan Alamat tidak boleh kosong!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    string query = "INSERT INTO Pasien (nama_pasien, alamat, no_telepon, tanggal_lahir, jenis_kelamin) " + " VALUES (@nama, @alamat, @telp, @tgl, @jk)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@nama", txtNama.Text);
+                    cmd.Parameters.AddWithValue("@alamat", txtAlamat.Text);
+                    cmd.Parameters.AddWithValue("@telp", txtTelp.Text);
+                    cmd.Parameters.AddWithValue("@tgl", dtpLahir.Value);
+                    cmd.Parameters.AddWithValue("@jk", cbJnsKelamin.Text);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Data Pasien Berhasil Disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    ClearForm(); // Bersihkan textbox setelah simpan
+                    TampilkanData(); // Refresh tabel
+                }
+                catch (Exception ex) { MessageBox.Show("Gagal Simpan: " + ex.Message); }
+            }
+        }
+
+
     }
 }
