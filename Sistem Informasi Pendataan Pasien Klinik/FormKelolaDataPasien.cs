@@ -81,6 +81,42 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             }
         }
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtIDPasien.Text))
+            {
+                MessageBox.Show("Pilih data yang ingin diubah dari tabel terlebih dahulu!");
+                return;
+            }
+
+            // BAGIAN F: Konfirmasi sebelum ubah
+            if (MessageBox.Show("Yakin ingin mengubah data ini?", "Konfirmasi Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        string query = "UPDATE Pasien SET nama_pasien=@nama, alamat=@alamat, no_telepon=@telp, tanggal_lahir=@tgl, jenis_kelamin=@jk WHERE id_pasien=@id";
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@id", txtIDPasien.Text);
+                        cmd.Parameters.AddWithValue("@nama", txtNama.Text);
+                        cmd.Parameters.AddWithValue("@alamat", txtAlamat.Text);
+                        cmd.Parameters.AddWithValue("@telp", txtTelp.Text);
+                        cmd.Parameters.AddWithValue("@tgl", dtpLahir.Value);
+                        cmd.Parameters.AddWithValue("@jk", cbJnsKelamin.Text);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Data Berhasil Diperbarui!");
+                        TampilkanData();
+                    }
+                    catch (Exception ex) { MessageBox.Show("Gagal Update: " + ex.Message); }
+                }
+            }
+        }
+
+
+
 
     }
 }
