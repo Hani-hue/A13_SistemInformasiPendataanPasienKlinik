@@ -29,5 +29,13 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             this.Hide(); // Sembunyikan menu utama
         }
 
+        private void btnLihat_Click(object sender, EventArgs e)
+        {
+            FormLihatDataPasienAdmin lihatData = new FormLihatDataPasienAdmin();
+            lihatData.Show();
+            this.Hide();
+        }
+
+
     }
 }
