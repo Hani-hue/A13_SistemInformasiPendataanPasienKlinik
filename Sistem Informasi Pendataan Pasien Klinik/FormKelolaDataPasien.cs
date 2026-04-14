@@ -115,6 +115,37 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             }
         }
 
+        private void btnHapus_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtIDPasien.Text))
+            {
+                MessageBox.Show("Pilih data yang akan dihapus!");
+                return;
+            }
+
+            // BAGIAN F: Konfirmasi sebelum hapus
+            if (MessageBox.Show("Data akan dihapus permanen. Lanjutkan?", "Hapus Data", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        string query = "DELETE FROM Pasien WHERE id_pasien=@id";
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@id", txtIDPasien.Text);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Data Pasien Telah Dihapus!");
+                        ClearForm();
+                        TampilkanData();
+                    }
+                    catch (Exception ex) { MessageBox.Show("Gagal Hapus: " + ex.Message); }
+                }
+            }
+        }
+
+
 
 
 
