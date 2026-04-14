@@ -36,6 +36,10 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             this.Hide();
         }
 
+        private void DashboardAdminNew_Load(object sender, EventArgs e)
+        {
+
+        }
 
     }
 }
