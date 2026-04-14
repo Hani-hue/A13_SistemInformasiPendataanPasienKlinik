@@ -16,6 +16,10 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
         // Gunakan server kamu
         string connectionString = @"Data Source=HANI1104\HANIW;Initial Catalog=klinik_db;Integrated Security=True";
 
-        
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
     }
 }
