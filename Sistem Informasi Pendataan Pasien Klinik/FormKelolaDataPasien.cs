@@ -145,6 +145,33 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             }
         }
 
+        private void dgvPasien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvPasien.Rows[e.RowIndex];
+
+                // Sesuaikan dengan nama kolom yang ada di CREATE TABLE pasien kamu
+                txtIDPasien.Text = row.Cells["id_pasien"].Value.ToString();
+                txtNama.Text = row.Cells["nama_pasien"].Value.ToString(); // Pakai nama_pasien
+                txtAlamat.Text = row.Cells["alamat"].Value.ToString();
+                txtTelp.Text = row.Cells["no_telepon"].Value.ToString(); // Pakai no_telepon
+                dtpLahir.Value = Convert.ToDateTime(row.Cells["tanggal_lahir"].Value); // Pakai tanggal_lahir
+                cbJnsKelamin.Text = row.Cells["jenis_kelamin"].Value.ToString(); // Pakai jenis_kelamin
+            }
+        }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            // Memanggil kembali Form Menu Utama (DashboardAdminNew)
+            DashboardAdminNew menuUtama = new DashboardAdminNew();
+            menuUtama.Show();
+
+            // Menutup Form Kelola ini agar tidak menumpuk di memori
+            this.Close();
+        }
+
+
 
 
 
