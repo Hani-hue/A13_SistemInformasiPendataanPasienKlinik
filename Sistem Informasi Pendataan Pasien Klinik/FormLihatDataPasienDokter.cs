@@ -39,6 +39,44 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             }
         }
 
-        
+        // --- TOMBOL CARI ---
+        private void btnCari_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    // Mencari berdasarkan nama atau id_pasien
+                    string query = "SELECT * FROM pasien WHERE nama_pasien LIKE @cari OR id_pasien LIKE @cari";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@cari", "%" + txtCari.Text + "%");
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dataGridView1.DataSource = dt;
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Data tidak ditemukan.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error saat mencari: " + ex.Message);
+                }
+            }
+        }
+
+        // --- TOMBOL KEMBALI ---
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            // Kembali ke Dashboard Dokter
+            // Pastikan nama form dashboard dokter kamu sudah benar
+            DashboardDokter menuDokter = new DashboardDokter();
+            menuDokter.Show();
+            this.Close();
+        }
+
     }
 }
