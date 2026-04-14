@@ -21,5 +21,49 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             InitializeComponent();
         }
 
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            // ... (validasi username kosong tetap sama) ...
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    // SESUAIKAN: Tabelnya 'users' (bukan Petugas)
+                    string query = "SELECT role FROM users WHERE username=@user AND password=@pass";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@user", txtUsername.Text.Trim());
+                    cmd.Parameters.AddWithValue("@pass", txtPassword.Text.Trim());
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        string role = reader["role"].ToString().Trim();
+
+                        // INSERT kamu pakai 'admin' huruf kecil, jadi pakai OrdinalIgnoreCase biar aman
+                        if (role.Equals("admin", StringComparison.OrdinalIgnoreCase))
+                        {
+                            DashboardAdminNew menuUtama = new DashboardAdminNew();
+                            menuUtama.Show();
+                            this.Hide();
+                        }
+                        else if (role.Equals("dokter", StringComparison.OrdinalIgnoreCase))
+                        {
+                            DashboardDokter menuDokter = new DashboardDokter();
+                            menuDokter.Show();
+                            this.Hide();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Username atau Password salah!");
+                    }
+                }
+                catch (Exception ex) { MessageBox.Show("Gagal Koneksi: " + ex.Message); }
+            }
+        }
+
     }
 }
