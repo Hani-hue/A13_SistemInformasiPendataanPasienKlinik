@@ -14,11 +14,12 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
     public partial class Form1 : Form
     {
         // Gunakan server kamu
-        string connectionString = @"Data Source=HANI1104\HANIW;Initial Catalog=klinik_db;Integrated Security=True";
+        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=klinik_db;Integrated Security=True";
 
         public Form1()
         {
             InitializeComponent();
+            txtPassword.PasswordChar = '*';
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -30,7 +31,7 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
                 try
                 {
                     conn.Open();
-                    // SESUAIKAN: Tabelnya 'users' (bukan Petugas)
+                    // SESUAIKAN: Tabelnya 'users' 
                     string query = "SELECT role FROM users WHERE username=@user AND password=@pass";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@user", txtUsername.Text.Trim());
@@ -49,6 +50,8 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
                             menuUtama.Show();
                             this.Hide();
                         }
+
+                        //ini buat msauk ke dashboard dokter
                         else if (role.Equals("dokter", StringComparison.OrdinalIgnoreCase))
                         {
                             DashboardDokter menuDokter = new DashboardDokter();
@@ -56,6 +59,8 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
                             this.Hide();
                         }
                     }
+
+                    //pesan jika tidak menemukan pengguna yang benar
                     else
                     {
                         MessageBox.Show("Username atau Password salah!");
