@@ -58,9 +58,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(29, 124);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(320, 20);
+            this.label1.Size = new System.Drawing.Size(263, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Cari data pasien berdasarkan Nama atau ID";
+            this.label1.Text = "Cari data pasien berdasarkan Nama";
             // 
             // btnCari
             // 

@@ -37,12 +37,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtIDPasien = new System.Windows.Forms.MaskedTextBox();
             this.txtTindakan = new System.Windows.Forms.MaskedTextBox();
             this.txtDiagnosa = new System.Windows.Forms.MaskedTextBox();
             this.txtKeluhan = new System.Windows.Forms.MaskedTextBox();
             this.txtIDokter = new System.Windows.Forms.MaskedTextBox();
             this.dtpTanggal = new System.Windows.Forms.DateTimePicker();
+            this.cmbPasien = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +64,6 @@
             this.btnKembali.TabIndex = 2;
             this.btnKembali.Text = "Kembali";
             this.btnKembali.UseVisualStyleBackColor = true;
-            this.btnKembali.Click += new System.EventHandler(this.btnKembali_Click);
             // 
             // btnSimpan
             // 
@@ -81,18 +80,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(47, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 20);
+            this.label1.Size = new System.Drawing.Size(103, 20);
             this.label1.TabIndex = 6;
-            this.label1.Text = "ID Pasien";
+            this.label1.Text = "Nama Pasien";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(47, 77);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 20);
+            this.label2.Size = new System.Drawing.Size(103, 20);
             this.label2.TabIndex = 7;
-            this.label2.Text = "ID Dokter";
+            this.label2.Text = "Nama Dokter";
             // 
             // label3
             // 
@@ -129,14 +128,6 @@
             this.label6.Size = new System.Drawing.Size(74, 20);
             this.label6.TabIndex = 11;
             this.label6.Text = "Tindakan";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
-            // txtIDPasien
-            // 
-            this.txtIDPasien.Location = new System.Drawing.Point(190, 44);
-            this.txtIDPasien.Name = "txtIDPasien";
-            this.txtIDPasien.Size = new System.Drawing.Size(144, 26);
-            this.txtIDPasien.TabIndex = 13;
             // 
             // txtTindakan
             // 
@@ -173,17 +164,26 @@
             this.dtpTanggal.Size = new System.Drawing.Size(200, 26);
             this.dtpTanggal.TabIndex = 19;
             // 
+            // cmbPasien
+            // 
+            this.cmbPasien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPasien.FormattingEnabled = true;
+            this.cmbPasien.Location = new System.Drawing.Point(190, 37);
+            this.cmbPasien.Name = "cmbPasien";
+            this.cmbPasien.Size = new System.Drawing.Size(121, 28);
+            this.cmbPasien.TabIndex = 20;
+            // 
             // FormInputRekamMedis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 550);
+            this.Controls.Add(this.cmbPasien);
             this.Controls.Add(this.dtpTanggal);
             this.Controls.Add(this.txtIDokter);
             this.Controls.Add(this.txtKeluhan);
             this.Controls.Add(this.txtDiagnosa);
             this.Controls.Add(this.txtTindakan);
-            this.Controls.Add(this.txtIDPasien);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -195,6 +195,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormInputRekamMedis";
             this.Text = "FormInputRekamMedis";
+            this.Load += new System.EventHandler(this.FormInputRekamMedis_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -212,11 +213,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.MaskedTextBox txtIDPasien;
         private System.Windows.Forms.MaskedTextBox txtTindakan;
         private System.Windows.Forms.MaskedTextBox txtDiagnosa;
         private System.Windows.Forms.MaskedTextBox txtKeluhan;
         private System.Windows.Forms.MaskedTextBox txtIDokter;
         private System.Windows.Forms.DateTimePicker dtpTanggal;
+        private System.Windows.Forms.ComboBox cmbPasien;
     }
 }
