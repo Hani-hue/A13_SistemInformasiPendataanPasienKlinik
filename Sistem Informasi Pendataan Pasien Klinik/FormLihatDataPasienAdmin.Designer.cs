@@ -48,7 +48,7 @@
             // 
             // btnLihat
             // 
-            this.btnLihat.Location = new System.Drawing.Point(622, 44);
+            this.btnLihat.Location = new System.Drawing.Point(598, 160);
             this.btnLihat.Name = "btnLihat";
             this.btnLihat.Size = new System.Drawing.Size(155, 40);
             this.btnLihat.TabIndex = 1;
@@ -59,16 +59,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 134);
+            this.label1.Location = new System.Drawing.Point(32, 134);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(364, 20);
+            this.label1.Size = new System.Drawing.Size(312, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Cari data pasien berdasarkan nama atau id pasien";
+            this.label1.Text = "Cari data pasien berdasarkan nama pasien";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtCari
             // 
-            this.txtCari.Location = new System.Drawing.Point(26, 174);
+            this.txtCari.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtCari.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtCari.Location = new System.Drawing.Point(36, 174);
             this.txtCari.Name = "txtCari";
             this.txtCari.Size = new System.Drawing.Size(267, 26);
             this.txtCari.TabIndex = 3;
@@ -96,6 +98,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormLihatDataPasienAdmin";
             this.Text = "FormLihatDataPasien";
+            this.Load += new System.EventHandler(this.FormLihatDataPasienAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -13,7 +13,7 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
 {
     public partial class FormInputRekamMedis : Form
     {
-        string connectionString = @"Data Source=HANI1104\HANIW;Initial Catalog=klinik_db;Integrated Security=True";
+        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=klinik_db;Integrated Security=True";
         public FormInputRekamMedis()
         {
             InitializeComponent();
@@ -41,6 +41,7 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                // Perintah SQL untuk menghitung baris yang ID-nya cocok
                 string query = "SELECT COUNT(*) FROM pasien WHERE id_pasien = @id";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@id", id);
@@ -85,11 +86,11 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
                     cmd.Parameters.AddWithValue("@tind", txtTindakan.Text);
 
                     conn.Open();
-                    cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery(); // Eksekusi perintah simpan
 
                     MessageBox.Show("Rekam Medis Berhasil Disimpan!", "Sukses");
-                    ClearForm();
-                    TampilkanData();
+                    ClearForm(); // Kosongkan form setelah berhasil
+                    TampilkanData(); // Refresh tabel biar data barunya kelihatan
                 }
                 catch (Exception ex) { MessageBox.Show("Gagal Simpan: " + ex.Message); }
             }
@@ -104,6 +105,7 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
 
         private void ClearForm()
         {
+            // Mengosongkan semua TextBox dan reset tanggal ke hari ini
             txtIDPasien.Clear();
             txtIDokter.Clear();
             txtKeluhan.Clear();

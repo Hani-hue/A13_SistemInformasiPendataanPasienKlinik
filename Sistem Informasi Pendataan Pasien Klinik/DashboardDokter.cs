@@ -26,7 +26,7 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             this.Hide();
         }
 
-        // 2. Tombol Isi Rekam Medis
+        // Tombol Isi Rekam Medis
         private void btnIsiRekam_Click(object sender, EventArgs e)
         {
             // Membuka form untuk input rekam medis (diagnosa, tindakan, dll)
@@ -36,7 +36,7 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             this.Hide();
         }
 
-        // 3. Tombol Logout
+        // Tombol Logout
         private void btnLogout_Click(object sender, EventArgs e)
         {
             // Kembali ke Form Login

@@ -17,16 +17,11 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
         private void btnPasien_Click(object sender, EventArgs e)
         {
-            // Pastikan nama FormDashboardAdmin sudah sesuai dengan file CRUD kamu
             FormDashboardAdmin formKelola = new FormDashboardAdmin();
             formKelola.Show();
-            this.Hide(); // Sembunyikan menu utama
+            this.Hide();
         }
 
         private void btnLihat_Click(object sender, EventArgs e)
@@ -36,10 +31,21 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             this.Hide();
         }
 
-        private void DashboardAdminNew_Load(object sender, EventArgs e)
+        // FUNGSI LOGOUT - Gunakan yang ini
+        private void btnLogOut_Click(object sender, EventArgs e)
         {
-
+            Form1 formLogin = new Form1();
+            formLogin.Show();
+            this.Close(); // Menutup Dashboard dan kembali ke Login
         }
 
+        private void DashboardAdminNew_Load(object sender, EventArgs e)
+        {
+            // Kosongkan saja
+        }
+
+        private void label1_Click(object sender, EventArgs e) { }
+
+        // Fungsi btnLogOut_Click_1 dihapus saja supaya tidak double
     }
 }

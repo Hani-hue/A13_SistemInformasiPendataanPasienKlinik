@@ -58,12 +58,6 @@
     <Compile Include="DashboardDokter.Designer.cs">
       <DependentUpon>DashboardDokter.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCariDataPasien.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormCariDataPasien.Designer.cs">
-      <DependentUpon>FormCariDataPasien.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormInputRekamMedis.cs">
       <SubType>Form</SubType>
     </Compile>
