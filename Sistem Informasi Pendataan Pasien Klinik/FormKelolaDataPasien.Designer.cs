@@ -172,7 +172,7 @@
             // 
             // btnKembali
             // 
-            this.btnKembali.Location = new System.Drawing.Point(523, 286);
+            this.btnKembali.Location = new System.Drawing.Point(522, 283);
             this.btnKembali.Name = "btnKembali";
             this.btnKembali.Size = new System.Drawing.Size(137, 43);
             this.btnKembali.TabIndex = 14;
