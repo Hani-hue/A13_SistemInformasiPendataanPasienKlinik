@@ -18,7 +18,6 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
         private void FormInputRekamMedis_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'klinik_dbDataSet1.rekam_medis' table. You can move, or remove it, as needed.
-            this.rekam_medisTableAdapter.Fill(this.klinik_dbDataSet1.rekam_medis);
             LoadDataPasien();
             TampilkanDataTabel();
         }
@@ -49,13 +48,30 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             {
                 try
                 {
-                    string query = "SELECT * FROM rekam_medis";
+                    // Query diubah dari SELECT * menjadi JOIN agar muncul Nama, bukan ID
+                    string query = @"SELECT 
+                                r.id_rekam, 
+                                p.nama_pasien, 
+                                u.username AS nama_dokter, 
+                                r.tanggal_pemeriksaan, 
+                                r.keluhan, 
+                                r.diagnosa, 
+                                r.tindakan
+                             FROM rekam_medis r
+                             JOIN pasien p ON r.id_pasien = p.id_pasien
+                             JOIN users u ON r.id_dokter = u.id_user";
+
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
+
+                    // Sekarang DataGridView akan otomatis menampilkan kolom Nama Pasien & Nama Dokter
                     dataGridView1.DataSource = dt;
                 }
-                catch (Exception ex) { MessageBox.Show("Gagal Load Tabel: " + ex.Message); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Gagal Load Tabel: " + ex.Message);
+                }
             }
         }
 
