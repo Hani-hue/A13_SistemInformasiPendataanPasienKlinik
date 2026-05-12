@@ -22,6 +22,24 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             TampilkanData(); // Memanggil data otomatis saat form terbuka
         }
 
+
+
+        private BindingSource bindingSource = new BindingSource();
+        private DataTable dtPasien = new DataTable();
+
+        private void FormPasien_Load(object sender, EventArgs e)
+        {
+            // Mengatur ComboBox Jenis Kelamin secara manual [cite: 397]
+            cbJnsKelamin.DataSource = new string[] { "Laki-laki", "Perempuan" };
+
+           // Konfigurasi DataGridView agar rapi [cite: 398, 403]
+            dgvPasien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPasien.ReadOnly = true;
+            dgvPasien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            TampilkanData(); // Memanggil fungsi load data
+        }
+
         // TAMPILKAN DATA & BAGIAN EXECUTE SCALAR ---
         private void TampilkanData()
         {
@@ -268,5 +286,8 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
                 MessageBox.Show("Reset gagal: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
+
 }
