@@ -143,7 +143,7 @@
             // 
             // btnSimpan
             // 
-            this.btnSimpan.Location = new System.Drawing.Point(522, 49);
+            this.btnSimpan.Location = new System.Drawing.Point(514, 41);
             this.btnSimpan.Name = "btnSimpan";
             this.btnSimpan.Size = new System.Drawing.Size(137, 43);
             this.btnSimpan.TabIndex = 8;
@@ -153,7 +153,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(523, 163);
+            this.btnUpdate.Location = new System.Drawing.Point(515, 155);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(137, 43);
             this.btnUpdate.TabIndex = 9;
@@ -163,7 +163,7 @@
             // 
             // btnHapus
             // 
-            this.btnHapus.Location = new System.Drawing.Point(522, 107);
+            this.btnHapus.Location = new System.Drawing.Point(514, 99);
             this.btnHapus.Name = "btnHapus";
             this.btnHapus.Size = new System.Drawing.Size(137, 43);
             this.btnHapus.TabIndex = 10;
@@ -173,7 +173,7 @@
             // 
             // btnClearAll
             // 
-            this.btnClearAll.Location = new System.Drawing.Point(522, 221);
+            this.btnClearAll.Location = new System.Drawing.Point(514, 213);
             this.btnClearAll.Name = "btnClearAll";
             this.btnClearAll.Size = new System.Drawing.Size(137, 43);
             this.btnClearAll.TabIndex = 12;
@@ -192,7 +192,7 @@
             // 
             // btnKembali
             // 
-            this.btnKembali.Location = new System.Drawing.Point(522, 283);
+            this.btnKembali.Location = new System.Drawing.Point(514, 275);
             this.btnKembali.Name = "btnKembali";
             this.btnKembali.Size = new System.Drawing.Size(137, 43);
             this.btnKembali.TabIndex = 14;
@@ -363,7 +363,7 @@
             // 
             // btnResetData
             // 
-            this.btnResetData.Location = new System.Drawing.Point(710, 49);
+            this.btnResetData.Location = new System.Drawing.Point(702, 41);
             this.btnResetData.Name = "btnResetData";
             this.btnResetData.Size = new System.Drawing.Size(137, 43);
             this.btnResetData.TabIndex = 21;
@@ -373,7 +373,7 @@
             // 
             // btnTestInject
             // 
-            this.btnTestInject.Location = new System.Drawing.Point(710, 107);
+            this.btnTestInject.Location = new System.Drawing.Point(702, 99);
             this.btnTestInject.Name = "btnTestInject";
             this.btnTestInject.Size = new System.Drawing.Size(137, 43);
             this.btnTestInject.TabIndex = 22;
