@@ -220,7 +220,7 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
 
                     // SQL INJECTION TEST: Menggabungkan string secara langsung sangat berbahaya
                     // Kita ubah target ke tabel pasien dan kolom id_pasien
-                    string query = "UPDATE pasien SET nama_pasien='HACKED' WHERE id_pasien='" + txtID.Text + "'";
+                    string query = "UPDATE pasien SET nama_pasien='HACKED' WHERE id_pasien='" + txtIDPasien.Text + "'";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -233,6 +233,39 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnResetData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    // Query disesuaikan untuk tabel pasien dan pasien_backup
+                    string query = @"
+                IF OBJECT_ID('dbo.pasien_backup') IS NOT NULL
+                BEGIN
+                    DELETE FROM dbo.pasien;
+                    INSERT INTO dbo.pasien (nama_pasien, alamat, no_telepon, tanggal_lahir, jenis_kelamin)
+                    SELECT nama_pasien, alamat, no_telepon, tanggal_lahir, jenis_kelamin 
+                    FROM dbo.pasien_backup;
+                END";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Data pasien berhasil direset", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TampilkanData(); // Memanggil fungsi refresh tabel kamu
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Reset gagal: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
