@@ -79,7 +79,7 @@
             // 
             // btnKembali
             // 
-            this.btnKembali.Location = new System.Drawing.Point(642, 471);
+            this.btnKembali.Location = new System.Drawing.Point(462, 225);
             this.btnKembali.Name = "btnKembali";
             this.btnKembali.Size = new System.Drawing.Size(135, 40);
             this.btnKembali.TabIndex = 2;
@@ -88,7 +88,7 @@
             // 
             // btnSimpan
             // 
-            this.btnSimpan.Location = new System.Drawing.Point(642, 56);
+            this.btnSimpan.Location = new System.Drawing.Point(462, 165);
             this.btnSimpan.Name = "btnSimpan";
             this.btnSimpan.Size = new System.Drawing.Size(135, 40);
             this.btnSimpan.TabIndex = 5;
