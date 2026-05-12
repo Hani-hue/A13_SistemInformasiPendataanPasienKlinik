@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDashboardAdmin));
             this.dgvPasien = new System.Windows.Forms.DataGridView();
             this.txtNama = new System.Windows.Forms.TextBox();
+            this.pasienBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.klinik_dbDataSet = new Sistem_Informasi_Pendataan_Pasien_Klinik.klinik_dbDataSet();
             this.txtIDPasien = new System.Windows.Forms.TextBox();
             this.txtAlamat = new System.Windows.Forms.TextBox();
             this.txtTelp = new System.Windows.Forms.TextBox();
@@ -62,14 +64,12 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnResetData = new System.Windows.Forms.Button();
             this.btnTestInject = new System.Windows.Forms.Button();
-            this.klinik_dbDataSet = new Sistem_Informasi_Pendataan_Pasien_Klinik.klinik_dbDataSet();
-            this.pasienBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pasienTableAdapter = new Sistem_Informasi_Pendataan_Pasien_Klinik.klinik_dbDataSetTableAdapters.pasienTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPasien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pasienBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.klinik_dbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.klinik_dbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pasienBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvPasien
@@ -81,7 +81,6 @@
             this.dgvPasien.RowTemplate.Height = 28;
             this.dgvPasien.Size = new System.Drawing.Size(679, 194);
             this.dgvPasien.TabIndex = 0;
-            this.dgvPasien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPasien_CellClick);
             // 
             // txtNama
             // 
@@ -90,6 +89,16 @@
             this.txtNama.Name = "txtNama";
             this.txtNama.Size = new System.Drawing.Size(137, 26);
             this.txtNama.TabIndex = 1;
+            // 
+            // pasienBindingSource
+            // 
+            this.pasienBindingSource.DataMember = "pasien";
+            this.pasienBindingSource.DataSource = this.klinik_dbDataSet;
+            // 
+            // klinik_dbDataSet
+            // 
+            this.klinik_dbDataSet.DataSetName = "klinik_dbDataSet";
+            this.klinik_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // txtIDPasien
             // 
@@ -239,6 +248,7 @@
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bindingNavigator1.BindingSource = this.pasienBindingSource;
             this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
             this.bindingNavigator1.DeleteItem = this.bindingNavigatorDeleteItem;
             this.bindingNavigator1.ImageScalingSize = new System.Drawing.Size(24, 24);
@@ -272,7 +282,7 @@
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 28);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Text = "of {0}";
             // 
             // bindingNavigatorCountItem
             // 
@@ -371,16 +381,6 @@
             this.btnTestInject.UseVisualStyleBackColor = true;
             this.btnTestInject.Click += new System.EventHandler(this.btnTestInject_Click);
             // 
-            // klinik_dbDataSet
-            // 
-            this.klinik_dbDataSet.DataSetName = "klinik_dbDataSet";
-            this.klinik_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // pasienBindingSource
-            // 
-            this.pasienBindingSource.DataMember = "pasien";
-            this.pasienBindingSource.DataSource = this.klinik_dbDataSet;
-            // 
             // pasienTableAdapter
             // 
             this.pasienTableAdapter.ClearBeforeFill = true;
@@ -415,11 +415,11 @@
             this.Text = "Kelola Data Pasien";
             this.Load += new System.EventHandler(this.FormDashboardAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPasien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pasienBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.klinik_dbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.klinik_dbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pasienBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

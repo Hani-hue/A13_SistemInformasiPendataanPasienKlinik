@@ -88,6 +88,16 @@
     <Compile Include="FormLihatDataPasienAdmin.Designer.cs">
       <DependentUpon>FormLihatDataPasienAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="klinik_dbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>klinik_dbDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="klinik_dbDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>klinik_dbDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DashboardAdminNew.resx">
@@ -120,6 +130,28 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="klinik_dbDataSet.xsc">
+      <DependentUpon>klinik_dbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="klinik_dbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>klinik_dbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="klinik_dbDataSet.xss">
+      <DependentUpon>klinik_dbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="klinik_dbDataSet1.xsc">
+      <DependentUpon>klinik_dbDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="klinik_dbDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>klinik_dbDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="klinik_dbDataSet1.xss">
+      <DependentUpon>klinik_dbDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
