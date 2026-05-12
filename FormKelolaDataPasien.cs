@@ -99,33 +99,34 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
         private void btnUpdate_Click(object sender, EventArgs e)
         {
 
-            // Pastikan admin sudah pilih data di tabel (ID Pasien nggak boleh kosong)
-            if (string.IsNullOrEmpty(txtIDPasien.Text))
+            if (string.IsNullOrWhiteSpace(txtIDPasien.Text))
             {
-                MessageBox.Show("Pilih data yang ingin diubah dari tabel terlebih dahulu!");
+                MessageBox.Show("Pilih data pasien yang akan diupdate!");
                 return;
             }
 
-            // BAGIAN F: Konfirmasi sebelum ubah dan agar ga salah klik
-            if (MessageBox.Show("Yakin ingin mengubah data ini?", "Konfirmasi Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Yakin ingin mengubah data?", "Konfirmasi", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     try
                     {
-                        // Perintah UPDATE berdasarkan id_pasien yang dipilih
-                        string query = "UPDATE Pasien SET nama_pasien=@nama, alamat=@alamat, no_telepon=@telp, tanggal_lahir=@tgl, jenis_kelamin=@jk WHERE id_pasien=@id";
-                        SqlCommand cmd = new SqlCommand(query, conn);
-                        cmd.Parameters.AddWithValue("@id", txtIDPasien.Text);
-                        cmd.Parameters.AddWithValue("@nama", txtNama.Text);
-                        cmd.Parameters.AddWithValue("@alamat", txtAlamat.Text);
-                        cmd.Parameters.AddWithValue("@telp", txtTelp.Text);
-                        cmd.Parameters.AddWithValue("@tgl", dtpLahir.Value);
-                        cmd.Parameters.AddWithValue("@jk", cbJnsKelamin.Text);
+                        // Memanggil nama Stored Procedure
+                        SqlCommand cmd = new SqlCommand("sp_UpdatePasien", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parameter harus sesuai dengan yang ada di SQL Server
+                        cmd.Parameters.AddWithValue("@IdPasien", txtIDPasien.Text);
+                        cmd.Parameters.AddWithValue("@NamaPasien", txtNama.Text);
+                        cmd.Parameters.AddWithValue("@Alamat", txtAlamat.Text);
+                        cmd.Parameters.AddWithValue("@NoTelepon", txtTelp.Text);
+                        cmd.Parameters.AddWithValue("@TanggalLahir", dtpLahir.Value.Date);
+                        cmd.Parameters.AddWithValue("@JenisKelamin", cbJnsKelamin.Text);
 
                         conn.Open();
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Data Berhasil Diperbarui!");
+                        MessageBox.Show("Data Pasien Berhasil Diperbarui via Stored Procedure!");
+
                         TampilkanData();
                     }
                     catch (Exception ex) { MessageBox.Show("Gagal Update: " + ex.Message); }
@@ -276,6 +277,29 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             }
         }
 
+        private void BindControls()
+        {
+            // Menghapus binding lama agar tidak terjadi duplikasi/error
+            txtIDPasien.DataBindings.Clear();
+            txtNama.DataBindings.Clear();
+            txtAlamat.DataBindings.Clear();
+            txtTelp.DataBindings.Clear();
+            dtpLahir.DataBindings.Clear();
+            cbJnsKelamin.DataBindings.Clear();
+
+            // Menghubungkan setiap kolom di DataTable/View ke TextBox masing-masing
+            // Format: ("Properti_Komponen", DataSource, "Nama_Kolom_Database")
+            txtIDPasien.DataBindings.Add("Text", bindingSource, "id_pasien");
+            txtNama.DataBindings.Add("Text", bindingSource, "nama_pasien");
+            txtAlamat.DataBindings.Add("Text", bindingSource, "alamat");
+            txtTelp.DataBindings.Add("Text", bindingSource, "no_telepon");
+
+            // Binding untuk DateTimePicker (menggunakan properti Value)
+            dtpLahir.DataBindings.Add("Value", bindingSource, "tanggal_lahir");
+
+            // Binding untuk ComboBox Jenis Kelamin
+            cbJnsKelamin.DataBindings.Add("Text", bindingSource, "jenis_kelamin");
+        }
 
     }
 
