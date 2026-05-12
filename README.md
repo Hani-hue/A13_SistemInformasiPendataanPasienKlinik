@@ -16,6 +16,25 @@
 <img width="799" height="483" alt="Screenshot 2026-04-15 042153" src="https://github.com/user-attachments/assets/8abc58b6-00bc-4f61-bfa2-20974aecd845" />
 <img width="952" height="579" alt="Screenshot 2026-04-15 042406" src="https://github.com/user-attachments/assets/1284a4fb-02b6-4468-9f5f-f6ab9cbf24c2" />
 
+Skenario 1: Percobaan SQL Injection pada Integritas Data
+Simulasi ini membuktikan bahwa penggunaan metode string concatenation pada fungsi update sangat rentan terhadap serangan SQL Injection, di mana manipulasi payload pada input ID dapat mengakibatkan modifikasi data pasien secara masif, sehingga menegaskan pentingnya penerapan Parameterized Query atau Stored Procedure sebagai standar keamanan database.
+<img width="1920" height="1200" alt="Screenshot 2026-05-12 212418" src="https://github.com/user-attachments/assets/3b150c7b-2e9a-415f-b695-3c419bb87b30" />
+Hasil akhir
+<img width="1920" height="1200" alt="Screenshot 2026-05-12 212432" src="https://github.com/user-attachments/assets/a4c2a4f4-5e21-46a6-ac35-62d7a56925c2" />
+
+Skenario 2: Mekanisme Pemulihan Data (Data Recovery) melalui Prosedur Reset
+Simulasi ini menunjukkan bahwa prosedur restorasi melalui fitur Reset Data mampu mengembalikan konsistensi sistem yang terkompromi dengan menghapus data rusak dan memulihkannya dari tabel backup, sekaligus membuktikan efektivitas strategi Defense in Depth dalam meminimalisir risiko kehilangan informasi permanen.
+<img width="1920" height="1200" alt="Screenshot 2026-05-12 213012" src="https://github.com/user-attachments/assets/2ca25211-37ed-4612-aea2-947d406a76e7" />
+Hasil akhir
+<img width="1920" height="1200" alt="Screenshot 2026-05-12 221115" src="https://github.com/user-attachments/assets/b83fe859-bf22-44be-98da-92333c17e746" />
+<img width="1920" height="1200" alt="Screenshot 2026-05-12 223102" src="https://github.com/user-attachments/assets/5252bbf8-21cf-442c-ac40-5cb3b178e292" />
+
+
+
+
+
+
+
 
 
 
