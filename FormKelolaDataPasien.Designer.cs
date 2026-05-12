@@ -49,22 +49,27 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.btnResetData = new System.Windows.Forms.Button();
             this.btnTestInject = new System.Windows.Forms.Button();
+            this.klinik_dbDataSet = new Sistem_Informasi_Pendataan_Pasien_Klinik.klinik_dbDataSet();
+            this.pasienBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pasienTableAdapter = new Sistem_Informasi_Pendataan_Pasien_Klinik.klinik_dbDataSetTableAdapters.pasienTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPasien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.klinik_dbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pasienBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvPasien
@@ -80,6 +85,7 @@
             // 
             // txtNama
             // 
+            this.txtNama.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "nama_pasien", true));
             this.txtNama.Location = new System.Drawing.Point(189, 90);
             this.txtNama.Name = "txtNama";
             this.txtNama.Size = new System.Drawing.Size(137, 26);
@@ -87,6 +93,7 @@
             // 
             // txtIDPasien
             // 
+            this.txtIDPasien.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "id_pasien", true));
             this.txtIDPasien.Location = new System.Drawing.Point(189, 49);
             this.txtIDPasien.Name = "txtIDPasien";
             this.txtIDPasien.Size = new System.Drawing.Size(137, 26);
@@ -94,6 +101,7 @@
             // 
             // txtAlamat
             // 
+            this.txtAlamat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "alamat", true));
             this.txtAlamat.Location = new System.Drawing.Point(189, 137);
             this.txtAlamat.Name = "txtAlamat";
             this.txtAlamat.Size = new System.Drawing.Size(137, 26);
@@ -101,6 +109,7 @@
             // 
             // txtTelp
             // 
+            this.txtTelp.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "no_telepon", true));
             this.txtTelp.Location = new System.Drawing.Point(189, 186);
             this.txtTelp.Name = "txtTelp";
             this.txtTelp.Size = new System.Drawing.Size(137, 26);
@@ -108,6 +117,7 @@
             // 
             // dtpLahir
             // 
+            this.dtpLahir.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "tanggal_lahir", true));
             this.dtpLahir.Location = new System.Drawing.Point(191, 228);
             this.dtpLahir.Name = "dtpLahir";
             this.dtpLahir.Size = new System.Drawing.Size(200, 26);
@@ -115,6 +125,7 @@
             // 
             // cbJnsKelamin
             // 
+            this.cbJnsKelamin.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "jenis_kelamin", true));
             this.cbJnsKelamin.FormattingEnabled = true;
             this.cbJnsKelamin.Location = new System.Drawing.Point(191, 269);
             this.cbJnsKelamin.Name = "cbJnsKelamin";
@@ -254,6 +265,31 @@
             this.bindingNavigator1.TabIndex = 20;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(54, 28);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            // 
             // bindingNavigatorMoveFirstItem
             // 
             this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -287,16 +323,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(54, 28);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 33);
             // 
             // bindingNavigatorMoveNextItem
@@ -319,26 +348,8 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 33);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 28);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 28);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // btnResetData
             // 
@@ -348,6 +359,7 @@
             this.btnResetData.TabIndex = 21;
             this.btnResetData.Text = "Reset Data";
             this.btnResetData.UseVisualStyleBackColor = true;
+            this.btnResetData.Click += new System.EventHandler(this.btnResetData_Click);
             // 
             // btnTestInject
             // 
@@ -357,6 +369,21 @@
             this.btnTestInject.TabIndex = 22;
             this.btnTestInject.Text = "Test";
             this.btnTestInject.UseVisualStyleBackColor = true;
+            this.btnTestInject.Click += new System.EventHandler(this.btnTestInject_Click);
+            // 
+            // klinik_dbDataSet
+            // 
+            this.klinik_dbDataSet.DataSetName = "klinik_dbDataSet";
+            this.klinik_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // pasienBindingSource
+            // 
+            this.pasienBindingSource.DataMember = "pasien";
+            this.pasienBindingSource.DataSource = this.klinik_dbDataSet;
+            // 
+            // pasienTableAdapter
+            // 
+            this.pasienTableAdapter.ClearBeforeFill = true;
             // 
             // FormDashboardAdmin
             // 
@@ -386,10 +413,13 @@
             this.Controls.Add(this.dgvPasien);
             this.Name = "FormDashboardAdmin";
             this.Text = "Kelola Data Pasien";
+            this.Load += new System.EventHandler(this.FormDashboardAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPasien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.klinik_dbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pasienBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -429,5 +459,8 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.Button btnResetData;
         private System.Windows.Forms.Button btnTestInject;
+        private klinik_dbDataSet klinik_dbDataSet;
+        private System.Windows.Forms.BindingSource pasienBindingSource;
+        private klinik_dbDataSetTableAdapters.pasienTableAdapter pasienTableAdapter;
     }
 }
