@@ -63,10 +63,9 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
 
         private void btnSimpan_Click(object sender, EventArgs e)
         {
-            // BAGIAN F: Validasi Input agar tidak kosong
-            if (string.IsNullOrWhiteSpace(txtNama.Text) || string.IsNullOrWhiteSpace(txtAlamat.Text))
+            if (string.IsNullOrWhiteSpace(txtNama.Text) || string.IsNullOrWhiteSpace(txtTelp.Text))
             {
-                MessageBox.Show("Nama dan Alamat tidak boleh kosong!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nama dan Nomor Telepon harus diisi!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -74,25 +73,32 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             {
                 try
                 {
-                    // Perintah INSERT untuk memasukkan data baru
-                    string query = "INSERT INTO Pasien (nama_pasien, alamat, no_telepon, tanggal_lahir, jenis_kelamin) " + " VALUES (@nama, @alamat, @telp, @tgl, @jk)";
-                    SqlCommand cmd = new SqlCommand(query, conn);
+                    // 2. Memanggil nama Stored Procedure yang sudah dibuat di SQL Server
+                    SqlCommand cmd = new SqlCommand("sp_InsertPasien", conn);
 
-                    // Menggunakan Parameter (@) agar aman dari SQL Injection (Hacker)
-                    cmd.Parameters.AddWithValue("@nama", txtNama.Text);
-                    cmd.Parameters.AddWithValue("@alamat", txtAlamat.Text);
-                    cmd.Parameters.AddWithValue("@telp", txtTelp.Text);
-                    cmd.Parameters.AddWithValue("@tgl", dtpLahir.Value);
-                    cmd.Parameters.AddWithValue("@jk", cbJnsKelamin.Text);
+                    // 3. WAJIB: Atur CommandType menjadi StoredProcedure
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // 4. Masukkan parameter (Nama parameter @ harus persis dengan di SQL Server)
+                    cmd.Parameters.AddWithValue("@NamaPasien", txtNama.Text);
+                    cmd.Parameters.AddWithValue("@Alamat", txtAlamat.Text);
+                    cmd.Parameters.AddWithValue("@NoTelepon", txtTelp.Text);
+                    cmd.Parameters.AddWithValue("@TanggalLahir", dtpLahir.Value.Date);
+                    cmd.Parameters.AddWithValue("@JenisKelamin", cbJnsKelamin.Text);
 
                     conn.Open();
-                    cmd.ExecuteNonQuery(); // Eksekusi perintah simpan
-                    MessageBox.Show("Data Pasien Berhasil Disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmd.ExecuteNonQuery(); // Eksekusi prosedur
 
-                    ClearForm(); // Bersihkan textbox setelah simpan
-                    TampilkanData(); // Refresh tabel agar data pasien baru muncul
+                    MessageBox.Show("Data Pasien Berhasil Ditambahkan (via Stored Procedure)!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // 5. Bersihkan form dan refresh tabel
+                    ClearForm();
+                    TampilkanData();
                 }
-                catch (Exception ex) { MessageBox.Show("Gagal Simpan: " + ex.Message); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Gagal Simpan: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
