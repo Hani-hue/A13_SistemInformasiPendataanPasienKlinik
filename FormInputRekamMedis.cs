@@ -17,6 +17,8 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
 
         private void FormInputRekamMedis_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'klinik_dbDataSet1.rekam_medis' table. You can move, or remove it, as needed.
+            this.rekam_medisTableAdapter.Fill(this.klinik_dbDataSet1.rekam_medis);
             LoadDataPasien();
             TampilkanDataTabel();
         }
