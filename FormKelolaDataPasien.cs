@@ -43,33 +43,22 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
         // TAMPILKAN DATA & BAGIAN EXECUTE SCALAR ---
         private void TampilkanData()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    // PENGAMAN: Buka koneksi di awal blok try
-                    if (conn.State == ConnectionState.Closed) conn.Open();
-
-                    // Perintah buat ambil semua data penting pasien
-                    string query = "SELECT id_pasien, nama_pasien, alamat, no_telepon, tanggal_lahir, jenis_kelamin FROM pasien";
-
-                    //untuk bawa tabel dari sql ke c#
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable(); //wadah tabel
-                    adapter.Fill(dt);
-                    dgvPasien.DataSource = dt; //tampilkan isi wadah ke tabel yang ada di datagridview
-
-                    // BAGIAN EXECUTE SCALAR: Menghitung total pasien
-                    SqlCommand cmdSum = new SqlCommand("SELECT COUNT(*) FROM pasien", conn);
-
-                    // ExecuteScalar mengambil angka hasil hitungan (1 nilai saja) dan tampilkan ke label
-                    label1.Text = "Total Pasien: " + cmdSum.ExecuteScalar().ToString();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Gagal Memuat Data: " + ex.Message);
+                    conn.Open();
+                    string query = "SELECT * FROM vwPasienPublic"; // Menggunakan VIEW 
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        dtPasien = new DataTable();
+                        da.Fill(dtPasien);
+                        bindingSource.DataSource = dtPasien;
+                        dgvPasien.DataSource = bindingSource;
+                    }
                 }
             }
+            catch (Exception ex) { MessageBox.Show("Gagal load data: " + ex.Message); }
         }
 
         private void btnSimpan_Click(object sender, EventArgs e)
