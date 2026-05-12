@@ -209,5 +209,31 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             // Mengembalikan fokus ke inputan pertama
             txtIDPasien.Focus();
         }
+
+        private void btnTestInject_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    // SQL INJECTION TEST: Menggabungkan string secara langsung sangat berbahaya
+                    // Kita ubah target ke tabel pasien dan kolom id_pasien
+                    string query = "UPDATE pasien SET nama_pasien='HACKED' WHERE id_pasien='" + txtID.Text + "'";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        int result = cmd.ExecuteNonQuery();
+                        MessageBox.Show(result + " baris terupdate", "Hasil Test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                TampilkanData(); // Refresh tabel setelah pengetesan
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
