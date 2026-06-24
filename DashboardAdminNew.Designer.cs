@@ -36,7 +36,8 @@
             // 
             // btnPasien
             // 
-            this.btnPasien.Location = new System.Drawing.Point(76, 300);
+            this.btnPasien.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPasien.Location = new System.Drawing.Point(17, 89);
             this.btnPasien.Name = "btnPasien";
             this.btnPasien.Size = new System.Drawing.Size(206, 46);
             this.btnPasien.TabIndex = 0;
@@ -46,9 +47,10 @@
             // 
             // btnLihat
             // 
-            this.btnLihat.Location = new System.Drawing.Point(316, 300);
+            this.btnLihat.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLihat.Location = new System.Drawing.Point(17, 168);
             this.btnLihat.Name = "btnLihat";
-            this.btnLihat.Size = new System.Drawing.Size(194, 45);
+            this.btnLihat.Size = new System.Drawing.Size(206, 45);
             this.btnLihat.TabIndex = 1;
             this.btnLihat.Text = "Lihat Data Pasien ";
             this.btnLihat.UseVisualStyleBackColor = true;
@@ -56,7 +58,9 @@
             // 
             // btnLogOut
             // 
-            this.btnLogOut.Location = new System.Drawing.Point(554, 301);
+            this.btnLogOut.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogOut.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnLogOut.Location = new System.Drawing.Point(581, 369);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(194, 45);
             this.btnLogOut.TabIndex = 2;
@@ -67,9 +71,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(312, 154);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 20);
+            this.label1.Size = new System.Drawing.Size(202, 25);
             this.label1.TabIndex = 3;
             this.label1.Text = "Dashboard Admin";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -78,6 +84,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLogOut);

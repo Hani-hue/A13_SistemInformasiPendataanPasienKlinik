@@ -1,3 +1,11 @@
 <Solution>
-  <Project Path="Sistem Informasi Pendataan Pasien Klinik.csproj" Id="9a038523-bd1e-4e6b-a100-c31691509e8b" />
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Sistem Informasi Pendataan Pasien Klinik.csproj" Id="9a038523-bd1e-4e6b-a100-c31691509e8b">
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
 </Solution>

@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDashboardAdmin));
             this.dgvPasien = new System.Windows.Forms.DataGridView();
             this.txtNama = new System.Windows.Forms.TextBox();
             this.pasienBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.klinik_dbDataSet = new Sistem_Informasi_Pendataan_Pasien_Klinik.klinik_dbDataSet();
-            this.txtIDPasien = new System.Windows.Forms.TextBox();
             this.txtAlamat = new System.Windows.Forms.TextBox();
             this.txtTelp = new System.Windows.Forms.TextBox();
             this.dtpLahir = new System.Windows.Forms.DateTimePicker();
@@ -45,7 +47,6 @@
             this.btnClearAll = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnKembali = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -65,6 +66,8 @@
             this.btnResetData = new System.Windows.Forms.Button();
             this.btnTestInject = new System.Windows.Forms.Button();
             this.pasienTableAdapter = new Sistem_Informasi_Pendataan_Pasien_Klinik.klinik_dbDataSetTableAdapters.pasienTableAdapter();
+            this.txtIDPasien = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPasien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pasienBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.klinik_dbDataSet)).BeginInit();
@@ -74,20 +77,47 @@
             // 
             // dgvPasien
             // 
+            this.dgvPasien.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPasien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPasien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPasien.Location = new System.Drawing.Point(12, 338);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPasien.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvPasien.Location = new System.Drawing.Point(27, 370);
             this.dgvPasien.Name = "dgvPasien";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPasien.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPasien.RowHeadersWidth = 62;
             this.dgvPasien.RowTemplate.Height = 28;
-            this.dgvPasien.Size = new System.Drawing.Size(679, 194);
+            this.dgvPasien.Size = new System.Drawing.Size(1028, 235);
             this.dgvPasien.TabIndex = 0;
+            this.dgvPasien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPasien_CellClick);
             // 
             // txtNama
             // 
             this.txtNama.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "nama_pasien", true));
-            this.txtNama.Location = new System.Drawing.Point(189, 90);
+            this.txtNama.Font = new System.Drawing.Font("Cambria", 10F);
+            this.txtNama.Location = new System.Drawing.Point(258, 73);
             this.txtNama.Name = "txtNama";
-            this.txtNama.Size = new System.Drawing.Size(137, 26);
+            this.txtNama.Size = new System.Drawing.Size(229, 31);
             this.txtNama.TabIndex = 1;
             // 
             // pasienBindingSource
@@ -100,50 +130,51 @@
             this.klinik_dbDataSet.DataSetName = "klinik_dbDataSet";
             this.klinik_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // txtIDPasien
-            // 
-            this.txtIDPasien.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "id_pasien", true));
-            this.txtIDPasien.Location = new System.Drawing.Point(189, 49);
-            this.txtIDPasien.Name = "txtIDPasien";
-            this.txtIDPasien.Size = new System.Drawing.Size(137, 26);
-            this.txtIDPasien.TabIndex = 2;
-            // 
             // txtAlamat
             // 
             this.txtAlamat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "alamat", true));
-            this.txtAlamat.Location = new System.Drawing.Point(189, 137);
+            this.txtAlamat.Font = new System.Drawing.Font("Cambria", 10F);
+            this.txtAlamat.Location = new System.Drawing.Point(258, 119);
             this.txtAlamat.Name = "txtAlamat";
-            this.txtAlamat.Size = new System.Drawing.Size(137, 26);
+            this.txtAlamat.Size = new System.Drawing.Size(229, 31);
             this.txtAlamat.TabIndex = 3;
             // 
             // txtTelp
             // 
             this.txtTelp.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "no_telepon", true));
-            this.txtTelp.Location = new System.Drawing.Point(189, 186);
+            this.txtTelp.Font = new System.Drawing.Font("Cambria", 10F);
+            this.txtTelp.Location = new System.Drawing.Point(258, 170);
             this.txtTelp.Name = "txtTelp";
-            this.txtTelp.Size = new System.Drawing.Size(137, 26);
+            this.txtTelp.Size = new System.Drawing.Size(229, 31);
             this.txtTelp.TabIndex = 4;
             // 
             // dtpLahir
             // 
             this.dtpLahir.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "tanggal_lahir", true));
-            this.dtpLahir.Location = new System.Drawing.Point(191, 228);
+            this.dtpLahir.Font = new System.Drawing.Font("Cambria", 10F);
+            this.dtpLahir.Location = new System.Drawing.Point(258, 224);
             this.dtpLahir.Name = "dtpLahir";
-            this.dtpLahir.Size = new System.Drawing.Size(200, 26);
+            this.dtpLahir.Size = new System.Drawing.Size(229, 31);
             this.dtpLahir.TabIndex = 6;
             // 
             // cbJnsKelamin
             // 
             this.cbJnsKelamin.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "jenis_kelamin", true));
+            this.cbJnsKelamin.Font = new System.Drawing.Font("Cambria", 10F);
             this.cbJnsKelamin.FormattingEnabled = true;
-            this.cbJnsKelamin.Location = new System.Drawing.Point(191, 269);
+            this.cbJnsKelamin.Items.AddRange(new object[] {
+            "L",
+            "P"});
+            this.cbJnsKelamin.Location = new System.Drawing.Point(258, 274);
             this.cbJnsKelamin.Name = "cbJnsKelamin";
-            this.cbJnsKelamin.Size = new System.Drawing.Size(121, 28);
+            this.cbJnsKelamin.Size = new System.Drawing.Size(229, 31);
             this.cbJnsKelamin.TabIndex = 7;
+            this.cbJnsKelamin.SelectedIndexChanged += new System.EventHandler(this.cbJnsKelamin_SelectedIndexChanged);
             // 
             // btnSimpan
             // 
-            this.btnSimpan.Location = new System.Drawing.Point(514, 41);
+            this.btnSimpan.Font = new System.Drawing.Font("Cambria", 10F);
+            this.btnSimpan.Location = new System.Drawing.Point(918, 111);
             this.btnSimpan.Name = "btnSimpan";
             this.btnSimpan.Size = new System.Drawing.Size(137, 43);
             this.btnSimpan.TabIndex = 8;
@@ -153,7 +184,8 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(515, 155);
+            this.btnUpdate.Font = new System.Drawing.Font("Cambria", 10F);
+            this.btnUpdate.Location = new System.Drawing.Point(918, 218);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(137, 43);
             this.btnUpdate.TabIndex = 9;
@@ -163,7 +195,8 @@
             // 
             // btnHapus
             // 
-            this.btnHapus.Location = new System.Drawing.Point(514, 99);
+            this.btnHapus.Font = new System.Drawing.Font("Cambria", 10F);
+            this.btnHapus.Location = new System.Drawing.Point(918, 164);
             this.btnHapus.Name = "btnHapus";
             this.btnHapus.Size = new System.Drawing.Size(137, 43);
             this.btnHapus.TabIndex = 10;
@@ -173,7 +206,8 @@
             // 
             // btnClearAll
             // 
-            this.btnClearAll.Location = new System.Drawing.Point(514, 213);
+            this.btnClearAll.Font = new System.Drawing.Font("Cambria", 10F);
+            this.btnClearAll.Location = new System.Drawing.Point(1075, 111);
             this.btnClearAll.Name = "btnClearAll";
             this.btnClearAll.Size = new System.Drawing.Size(137, 43);
             this.btnClearAll.TabIndex = 12;
@@ -184,15 +218,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 96);
+            this.label1.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(27, 76);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 20);
+            this.label1.Size = new System.Drawing.Size(122, 23);
             this.label1.TabIndex = 13;
             this.label1.Text = "Nama Pasien";
             // 
             // btnKembali
             // 
-            this.btnKembali.Location = new System.Drawing.Point(514, 275);
+            this.btnKembali.Font = new System.Drawing.Font("Cambria", 10F);
+            this.btnKembali.Location = new System.Drawing.Point(1075, 562);
             this.btnKembali.Name = "btnKembali";
             this.btnKembali.Size = new System.Drawing.Size(137, 43);
             this.btnKembali.TabIndex = 14;
@@ -200,48 +236,43 @@
             this.btnKembali.UseVisualStyleBackColor = true;
             this.btnKembali.Click += new System.EventHandler(this.btnKembali_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 20);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "ID Pasien";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 143);
+            this.label3.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(27, 122);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 20);
+            this.label3.Size = new System.Drawing.Size(71, 23);
             this.label3.TabIndex = 16;
             this.label3.Text = "Alamat";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 192);
+            this.label4.Font = new System.Drawing.Font("Cambria", 10F);
+            this.label4.Location = new System.Drawing.Point(27, 173);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(133, 20);
+            this.label4.Size = new System.Drawing.Size(158, 23);
             this.label4.TabIndex = 17;
             this.label4.Text = "No Telpon Pasien";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 234);
+            this.label5.Font = new System.Drawing.Font("Cambria", 10F);
+            this.label5.Location = new System.Drawing.Point(27, 226);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(157, 20);
+            this.label5.Size = new System.Drawing.Size(187, 23);
             this.label5.TabIndex = 18;
             this.label5.Text = "Tanggal Lahir Pasien";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 277);
+            this.label6.Font = new System.Drawing.Font("Cambria", 10F);
+            this.label6.Location = new System.Drawing.Point(27, 279);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 20);
+            this.label6.Size = new System.Drawing.Size(128, 23);
             this.label6.TabIndex = 19;
             this.label6.Text = "Jenis Kelamin";
             // 
@@ -271,7 +302,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(878, 33);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1224, 38);
             this.bindingNavigator1.TabIndex = 20;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -281,13 +312,13 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorAddNewItem.Text = "of {0}";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(54, 28);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(54, 33);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -297,7 +328,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
@@ -306,7 +337,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -315,13 +346,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 33);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 38);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -336,7 +367,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 33);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 38);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -344,7 +375,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -353,17 +384,18 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 33);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 38);
             // 
             // btnResetData
             // 
-            this.btnResetData.Location = new System.Drawing.Point(702, 41);
+            this.btnResetData.Font = new System.Drawing.Font("Cambria", 10F);
+            this.btnResetData.Location = new System.Drawing.Point(1075, 164);
             this.btnResetData.Name = "btnResetData";
             this.btnResetData.Size = new System.Drawing.Size(137, 43);
             this.btnResetData.TabIndex = 21;
@@ -373,7 +405,8 @@
             // 
             // btnTestInject
             // 
-            this.btnTestInject.Location = new System.Drawing.Point(702, 99);
+            this.btnTestInject.Font = new System.Drawing.Font("Cambria", 10F);
+            this.btnTestInject.Location = new System.Drawing.Point(1075, 218);
             this.btnTestInject.Name = "btnTestInject";
             this.btnTestInject.Size = new System.Drawing.Size(137, 43);
             this.btnTestInject.TabIndex = 22;
@@ -385,11 +418,33 @@
             // 
             this.pasienTableAdapter.ClearBeforeFill = true;
             // 
+            // txtIDPasien
+            // 
+            this.txtIDPasien.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasienBindingSource, "id_pasien", true));
+            this.txtIDPasien.Font = new System.Drawing.Font("Cambria", 10F);
+            this.txtIDPasien.Location = new System.Drawing.Point(258, 25);
+            this.txtIDPasien.Name = "txtIDPasien";
+            this.txtIDPasien.Size = new System.Drawing.Size(229, 31);
+            this.txtIDPasien.TabIndex = 2;
+            this.txtIDPasien.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(27, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 23);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "ID Pasien";
+            this.label2.Visible = false;
+            // 
             // FormDashboardAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(878, 544);
+            this.BackColor = System.Drawing.Color.PowderBlue;
+            this.ClientSize = new System.Drawing.Size(1224, 617);
             this.Controls.Add(this.btnTestInject);
             this.Controls.Add(this.btnResetData);
             this.Controls.Add(this.bindingNavigator1);
@@ -429,7 +484,6 @@
 
         private System.Windows.Forms.DataGridView dgvPasien;
         private System.Windows.Forms.TextBox txtNama;
-        private System.Windows.Forms.TextBox txtIDPasien;
         private System.Windows.Forms.TextBox txtAlamat;
         private System.Windows.Forms.TextBox txtTelp;
         private System.Windows.Forms.DateTimePicker dtpLahir;
@@ -440,7 +494,6 @@
         private System.Windows.Forms.Button btnClearAll;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnKembali;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -462,5 +515,7 @@
         private klinik_dbDataSet klinik_dbDataSet;
         private System.Windows.Forms.BindingSource pasienBindingSource;
         private klinik_dbDataSetTableAdapters.pasienTableAdapter pasienTableAdapter;
+        private System.Windows.Forms.TextBox txtIDPasien;
+        private System.Windows.Forms.Label label2;
     }
 }

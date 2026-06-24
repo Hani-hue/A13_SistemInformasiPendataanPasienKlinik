@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Sistem_Informasi_Pendataan_Pasien_Klinik
 {
@@ -19,7 +22,9 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
         public FormDashboardAdmin()
         {
             InitializeComponent();
-            TampilkanData(); // Memanggil data otomatis saat form terbuka
+            dgvPasien.DataError += (s, e) => e.ThrowException = false; // supaya error popup berhenti
+            TampilkanData();
+              // Memanggil data otomatis saat form terbuka
         }
 
         private BindingSource bindingSource = new BindingSource();
@@ -44,16 +49,11 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
                     {
                         dtPasien = new DataTable();
                         da.Fill(dtPasien);
-
                         bindingSource.DataSource = null;
                         bindingSource.DataSource = dtPasien;
                         dgvPasien.DataSource = bindingSource;
-
-                        // TAMBAHKAN BARIS INI:
-                        // Ini untuk menyambungkan angka "0 of 0" di Navigator ke data Anda
                         bindingNavigator1.BindingSource = bindingSource;
-
-                        BindControls();
+                        // BindControls() dihapus dari sini
                     }
                 }
             }
@@ -62,30 +62,44 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
 
         private void btnSimpan_Click(object sender, EventArgs e)
         {
+
+            //Pertama dilakukan validasi input. Fungsinya untuk memastikan data wajib seperti nama
+            //dan nomor telepon tidak kosong sebelum dikirim ke database
             if (string.IsNullOrWhiteSpace(txtNama.Text) || string.IsNullOrWhiteSpace(txtTelp.Text))
             {
                 MessageBox.Show("Nama dan Nomor Telepon harus diisi!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            //membuat objek koneksi ke database. Penggunaan blok using ini penting agar koneksi otomatis ditutup setelah
+            //proses selesai, sehingga mencegah kebocoran memori (connection leak)."
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 try
                 {
+
+                    //Di baris ini, mendefinisikan perintah untuk mengeksekusi Stored Procedure bernama sp_InsertPasien,
+                    //bukan menggunakan raw query biasa."
                     SqlCommand cmd = new SqlCommand("sp_InsertPasien", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    //Proses pengiriman datanya menggunakan Parameterized Query.
+                    //Nilai dari TextBox dibungkus ke dalam parameter untuk mencegah celah keamanan SQL Injection."
                     cmd.Parameters.AddWithValue("@nama_pasien", txtNama.Text);
                     cmd.Parameters.AddWithValue("@alamat", txtAlamat.Text);
                     cmd.Parameters.AddWithValue("@no_telepon", txtTelp.Text);
                     cmd.Parameters.AddWithValue("@tanggal_lahir", dtpLahir.Value.Date);
                     cmd.Parameters.AddWithValue("@jenis_kelamin", cbJnsKelamin.Text);
 
+                    //Koneksi database dibuka, kemudian fungsi ExecuteNonQuery()
+                    //dijalankan untuk mengeksekusi operasi Insert tersebut ke database."
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Data Pasien Berhasil Ditambahkan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    //Setelah data berhasil masuk, form dibersihkan kembali dan fungsi TampilkanData()
+                    //dipanggil untuk me - refresh tampilan GridView secara real-time."
                     ClearForm();
                     TampilkanData();
                 }
@@ -98,22 +112,28 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            //alidasi awal untuk memastikan pengguna sudah memilih data pasien
+             //terlebih dahulu dari tabel sebelum melakukan pembaruan."
             if (string.IsNullOrWhiteSpace(txtIDPasien.Text))
             {
                 MessageBox.Show("Pilih data pasien yang akan diupdate!");
                 return;
             }
 
+            //Menampilkan kotak dialog konfirmasi kepada pengguna untuk menghindari ketidaksengajaan dalam mengubah data."
             if (MessageBox.Show("Yakin ingin mengubah data?", "Konfirmasi", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     try
                     {
+                        //Perintah untuk memanggil Stored Procedure khusus pembaruan data, yaitu sp_UpdatePasien."
                         SqlCommand cmd = new SqlCommand("sp_UpdatePasien", conn);
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         // PERBAIKAN: Menambahkan parameter @IdPasien yang sebelumnya hilang
+                        //Selain data baru, parameter @IdPasien wajib dikirimkan sebagai klausa atau acuan agar database tahu data pasien
+                        //spesifik mana yang akan diperbarui."
                         cmd.Parameters.AddWithValue("@IdPasien", txtIDPasien.Text);
                         cmd.Parameters.AddWithValue("@nama_pasien", txtNama.Text);
                         cmd.Parameters.AddWithValue("@alamat", txtAlamat.Text);
@@ -146,18 +166,21 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
                 {
                     try
                     {
+                        //Perintah untuk mengeksekusi Stored Procedure penghapusan data bernama sp_DeletePasien
                         SqlCommand cmd = new SqlCommand("sp_DeletePasien", conn);
                         cmd.CommandType = CommandType.StoredProcedure;
+
+                        //Untuk proses hapus, kita hanya perlu mengirimkan parameter ID Pasien saja sebagai kunci data yang akan dieliminasi."
                         cmd.Parameters.AddWithValue("@IdPasien", txtIDPasien.Text);
 
                         conn.Open();
                         int rowsAffected = cmd.ExecuteNonQuery();
 
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Data Berhasil Dihapus!");
-                            TampilkanData();
-                        }
+                        //Variabel rowsAffected menangkap jumlah baris yang terpengaruh di database.Jika nilainya lebih dari 0,
+                        //berarti proses penghapusan berhasi
+                        MessageBox.Show("Data Berhasil Dihapus!");
+                        ClearForm();
+                        TampilkanData();
                     }
                     catch (Exception ex) { MessageBox.Show("Gagal Hapus: " + ex.Message); }
                 }
@@ -213,12 +236,16 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
+
                     // PERBAIKAN: Menggunakan Parameterized Query untuk keamanan
+                    // Kalau mau simulasi jebret/ke-hack, @id diganti langsung pakai + txtIDPasien.Text
                     string query = "UPDATE pasien SET nama_pasien='HACKED' WHERE id_pasien = @id";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        //Inputan dari TextBox dibungkus jadi parameter murni (teks biasa)
                         cmd.Parameters.AddWithValue("@id", txtIDPasien.Text);
+
                         int result = cmd.ExecuteNonQuery();
                         MessageBox.Show(result + " baris terupdate", "Hasil Test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
@@ -235,6 +262,7 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
+                    // Query panjang di bawah ini gunanya buat ngebersihin tabel dan balikin data dari backup
                     string query = @"
                 IF OBJECT_ID('dbo.pasien_backup') IS NOT NULL
                 BEGIN
@@ -259,37 +287,18 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
                     }
                 }
                 MessageBox.Show("Data berhasil direset!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TampilkanData();
+                TampilkanData(); // Refresh tabel setelah direset
             }
             catch (Exception ex) { MessageBox.Show("Reset gagal: " + ex.Message); }
         }
 
-        private void BindControls()
-        {
-            // PERBAIKAN: Bersihkan semua binding lama agar tidak bentrok
-            txtIDPasien.DataBindings.Clear();
-            txtNama.DataBindings.Clear();
-            txtAlamat.DataBindings.Clear();
-            txtTelp.DataBindings.Clear();
-            dtpLahir.DataBindings.Clear();
-            cbJnsKelamin.DataBindings.Clear();
-
-            // PERBAIKAN: Tambahkan parameter formattingEnabled (true)
-            // Ini sangat krusial agar kontrol seperti DateTimePicker bisa mengenali format data
-            txtIDPasien.DataBindings.Add("Text", bindingSource, "id_pasien", true);
-            txtNama.DataBindings.Add("Text", bindingSource, "nama_pasien", true);
-            txtAlamat.DataBindings.Add("Text", bindingSource, "alamat", true);
-            txtTelp.DataBindings.Add("Text", bindingSource, "no_telepon", true);
-
-            // Binding khusus untuk DateTimePicker (properti 'Value')
-            dtpLahir.DataBindings.Add("Value", bindingSource, "tanggal_lahir", true);
-
-            // Binding untuk ComboBox (properti 'Text')
-            cbJnsKelamin.DataBindings.Add("Text", bindingSource, "jenis_kelamin", true);
-        }
-
         private void FormDashboardAdmin_Load(object sender, EventArgs e)
         {
+        }
+
+        private void cbJnsKelamin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

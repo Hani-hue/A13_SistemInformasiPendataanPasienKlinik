@@ -14,12 +14,13 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
     public partial class FormLihatDataPasienDokter : Form
     {
         string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=klinik_db;Integrated Security=True";
+        private BindingSource bindingSource = new BindingSource();
+
         public FormLihatDataPasienDokter()
         {
             InitializeComponent();
-            TampilkanData(); // Fungsi ini langsung jalan ketika diklik supaya tabel tidak kosong saat dibuka
+            TampilkanData();
         }
-      
 
         private void TampilkanData()
         {
@@ -27,14 +28,14 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             {
                 try
                 {
-                    //Mengambil data identitas pasien dari database
                     string query = "SELECT id_pasien, nama_pasien, alamat, no_telepon, tanggal_lahir, jenis_kelamin FROM pasien";
-
-                    // SqlDataAdapter bertugas mengambil tabel dari database ke aplikasi
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable(); // Wadah tabel sementara di memori
-                    adapter.Fill(dt); // Isi wadah dengan data
-                    dataGridView1.DataSource = dt; // Tampilkan wadah ke tabel di layar
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    bindingSource.DataSource = dt;
+                    dataGridView1.DataSource = bindingSource;
+                    bindingNavigator1.BindingSource = bindingSource;
                 }
                 catch (Exception ex)
                 {
@@ -43,26 +44,24 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             }
         }
 
-        // --- TOMBOL CARI ---
         private void btnCari_Click(object sender, EventArgs e)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 try
                 {
-                    // Mencari berdasarkan nama atau id_pasien
-                    string query = "SELECT * FROM pasien WHERE nama_pasien LIKE @cari OR id_pasien LIKE @cari";
+                    string query = "SELECT * FROM pasien WHERE nama_pasien LIKE @cari OR CAST(id_pasien AS VARCHAR) LIKE @cari";
                     SqlCommand cmd = new SqlCommand(query, conn);
-
-                    // Simbol % digunakan agar pencarian fleksibel (depan, tengah, atau belakang)
                     cmd.Parameters.AddWithValue("@cari", "%" + txtCari.Text + "%");
 
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
-                    dataGridView1.DataSource = dt;
 
-                    // VALIDASI: Jika baris data yang ketemu adalah 0 (Zonk)
+                    bindingSource.DataSource = dt;
+                    dataGridView1.DataSource = bindingSource;
+                    bindingNavigator1.BindingSource = bindingSource;
+
                     if (dt.Rows.Count == 0)
                     {
                         MessageBox.Show("Data tidak ditemukan.");
@@ -75,15 +74,15 @@ namespace Sistem_Informasi_Pendataan_Pasien_Klinik
             }
         }
 
-        // --- TOMBOL KEMBALI ---
         private void btnKembali_Click(object sender, EventArgs e)
         {
-            // Kembali ke Dashboard Dokter
-            // Pastikan nama form dashboard dokter kamu sudah benar
             DashboardDokter menuDokter = new DashboardDokter();
             menuDokter.Show();
             this.Close();
         }
 
+        private void label1_Click(object sender, EventArgs e) { }
+
+        private void FormLihatDataPasienDokter_Load(object sender, EventArgs e) { }
     }
 }

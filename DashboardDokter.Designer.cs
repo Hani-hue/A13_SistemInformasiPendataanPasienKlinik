@@ -37,17 +37,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(378, 175);
+            this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 20);
+            this.label1.Size = new System.Drawing.Size(205, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "dashboard Dokter";
+            this.label1.Text = "Dashboard Dokter";
             // 
             // btnLihat
             // 
-            this.btnLihat.Location = new System.Drawing.Point(104, 342);
+            this.btnLihat.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLihat.Location = new System.Drawing.Point(17, 97);
             this.btnLihat.Name = "btnLihat";
-            this.btnLihat.Size = new System.Drawing.Size(189, 46);
+            this.btnLihat.Size = new System.Drawing.Size(206, 46);
             this.btnLihat.TabIndex = 1;
             this.btnLihat.Text = "Lihat data pasien";
             this.btnLihat.UseVisualStyleBackColor = true;
@@ -55,9 +57,10 @@
             // 
             // btnIsiRekam
             // 
-            this.btnIsiRekam.Location = new System.Drawing.Point(358, 342);
+            this.btnIsiRekam.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIsiRekam.Location = new System.Drawing.Point(17, 178);
             this.btnIsiRekam.Name = "btnIsiRekam";
-            this.btnIsiRekam.Size = new System.Drawing.Size(189, 46);
+            this.btnIsiRekam.Size = new System.Drawing.Size(206, 46);
             this.btnIsiRekam.TabIndex = 2;
             this.btnIsiRekam.Text = "Isi Rekam Medis";
             this.btnIsiRekam.UseVisualStyleBackColor = true;
@@ -65,7 +68,8 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(608, 342);
+            this.btnLogout.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.Location = new System.Drawing.Point(554, 451);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(189, 46);
             this.btnLogout.TabIndex = 3;
@@ -77,7 +81,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(897, 521);
+            this.BackColor = System.Drawing.Color.PowderBlue;
+            this.ClientSize = new System.Drawing.Size(755, 521);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnIsiRekam);
             this.Controls.Add(this.btnLihat);
